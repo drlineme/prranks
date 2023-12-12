@@ -3,9 +3,20 @@ import json
 import webbrowser
 from collections import defaultdict
 from github import Github, Auth
+from .config import REPO_TOBE_REVIEWED
 from .utilyaml import find_yaml_files, get_yaml_content, save_yaml_content
 from .progress import topics_to_review
 from .idnames import fidmap
+
+# exit condition
+conds = [
+    (not REPO_TOBE_REVIEWED, "No repo to be reviewed, please set REPO_TOBE_REVIEWED in config.py"),
+    (not os.environ.get("GITHUB_KEY"), "No GITHUB_KEY found in env, please set it first"),
+]
+for cond, msg in conds:
+    if cond:
+        print(msg)
+        exit(1)
 
 # using an access token
 auth = Auth.Token(os.environ.get("GITHUB_KEY"))
@@ -91,7 +102,7 @@ reviewer = g.get_user()
 print('Reviewer Name:', reviewer.name)
 for repo in reviewer.get_repos():
     # print(repo.name)
-    if repo.name == "cybersecurity-threat-research":
+    if repo.name == REPO_TOBE_REVIEWED:
         # build author dict for review
         author_prs = defaultdict(list)
         coauthors = defaultdict(list)

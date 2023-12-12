@@ -3,33 +3,8 @@
 import os
 
 import pandas as pd
+from .config import TOPICS, SCORE_STANDARD
 from .utilyaml import get_yaml_content, find_yaml_files, save_yaml_content
-
-TOPICS = [
-    "Learning about threat actors",
-    "Network exploration",
-    "Website info gathering",
-    "Directory hunting",
-    "Search engine dorks",
-    "Whois",
-    "Cert transparency & Internet archives",
-    "Iris by DomainTools",
-    "Document Metadata",
-    "Interesting places to look",
-    "Publicly accessible data storage",
-    "People, images, locations",
-    "Searching social media",
-    "Profiles tracking & password reset",
-    "Password, dumps and data viper"
-]
-
-SCORE_STANDARD = {
-    "O": "Outstanding",
-    "E": "Exceeds Expectations",
-    "A": "Achieved",
-    "B": "Below",
-    "U": "Unsatisfactory",
-}
 
 
 def normalize_keys(profile):
