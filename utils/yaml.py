@@ -22,3 +22,17 @@ def find_yaml_files(root_dir):
             if item.endswith(".yaml") or item.endswith(".yml"):
                 yaml_files.append(os.path.join(root_dir, item))
     return yaml_files
+
+
+def save_rank(sid, topic, rank):
+    print(f'Searching file startswith: {sid}')
+    for fn in find_yaml_files('.'):
+        print(fn[2:])
+        if fn[2:].upper().startswith(sid):
+            studentinfo = get_yaml_content(fn)
+            rankinfo = studentinfo['topic']
+            if topic in rankinfo:
+                rankinfo[topic] = rank
+                save_yaml_content(fn, studentinfo)
+                return True
+    return False

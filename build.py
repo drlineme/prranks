@@ -3,8 +3,8 @@
 import os
 
 import pandas as pd
-from .config import TOPICS, SCORE_STANDARD
-from .utilyaml import get_yaml_content, find_yaml_files, save_yaml_content
+from .utils.constants import TOPICS, SCORE_STANDARD
+from .utils.yaml import get_yaml_content, find_yaml_files, save_yaml_content
 
 
 def normalize_keys(profile):

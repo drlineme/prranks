@@ -1,0 +1,28 @@
+import os
+import json
+import webbrowser
+from collections import defaultdict
+from github import Github, Auth
+from .config import PROJECTS_TOBE_REVIEWED
+from .utilio import sprint, fprint, ask
+from .utils.yaml import find_yaml_files, get_yaml_content, save_yaml_content
+
+# Exit condition
+conds = [
+    (not PROJECTS_TOBE_REVIEWED, "No projects to be reviewed, please set PROJECTS_TOBE_REVIEWED in config.py"),
+    (not os.environ.get("GITHUB_KEY"), "No GITHUB_KEY found in env, please set it first"),
+]
+for cond, msg in conds:
+    if cond:
+        print(msg)
+        exit(1)
+
+# Using an access token
+auth = Auth.Token(os.environ.get("GITHUB_KEY"))
+g = Github(auth=auth)
+
+# Then play with Github objects:
+
+
+# To close connections after use
+g.close()

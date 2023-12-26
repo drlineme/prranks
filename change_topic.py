@@ -3,7 +3,7 @@
 import os
 
 import pandas as pd
-from .utilyaml import get_yaml_content, find_yaml_files, save_yaml_content
+from .utils.yaml import get_yaml_content, find_yaml_files, save_yaml_content
 from .build import TOPICS, normalize_keys
 
 
